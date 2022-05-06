@@ -68,7 +68,11 @@ int main()
         {
             cin.clear();
             cin.ignore(100,'\n');
-            cout << "Choice must be an integer.";
+            cout << "Choice must be a number. ";
+        }
+        if (itemChoice > itemCount + 1 || itemChoice < 1)
+        {
+            cout << "Choice must be a number on the menu. "
         }
         if (itemChoice == itemCount + 1)
         {
