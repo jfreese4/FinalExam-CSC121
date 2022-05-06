@@ -3,17 +3,17 @@
 
 using namespace std;
 
-void displayMenu(int& lineCount, ifstream& menuFile)
+void displayMenu(int& lineCount, ifstream& menuFile)        // Calls lineCount and menuFile by reference for use later.
 {
     string line;
     while (getline(menuFile, line))
     {
         lineCount++;
-        cout << lineCount << ". " << line << endl;
+        cout << lineCount << ". " << line << endl;  //Reads out menu with line numbers assigned.
     }
     cout << lineCount + 1 << ". Print Receipt" << endl;
-    menuFile.clear();
-    menuFile.seekg(0);
+    menuFile.clear();       // Clears eof
+    menuFile.seekg(0);      // Sets the files reading location to 0
 }
 
 void displaySalesReceipt(string item, int amount, double price, int itemCount, double& priceTotal)
@@ -24,11 +24,11 @@ void displaySalesReceipt(string item, int amount, double price, int itemCount, d
         priceTotal += price * amount;
     }
 
-}
+}   // Gets the item, amount, double, and price, and outputs them nicely
 
 int main()
 {
-    int itemCount = 0;
+    int itemCount = 0;      // Used all of these variables.
     int itemChoice;
     int priceCount = 0;
     int split;
@@ -37,16 +37,16 @@ int main()
     ifstream menuFile;
     bool isDone = false;
     bool isEmpty = true;
-    menuFile.open("qbc_menu_prices.txt");
+    menuFile.open("qbc_menu_prices.txt");   //Opens the file for use through menuFile
 
-    if(menuFile.fail())
+    if(menuFile.fail())     // Ensures that the file opens correctly or the program exits.
     {
         cout << "File failed to open.";
         exit(1);
     }
 
-    displayMenu(itemCount, menuFile);
-    string menuItems[itemCount];
+    displayMenu(itemCount, menuFile);       // Calls displayMenu with references to set the itemCount variable
+    string menuItems[itemCount];        // Creates a few variables that were dependent on the size of itemCount
     int itemCart[itemCount];
     double prices[itemCount];
 
@@ -59,7 +59,7 @@ int main()
         itemCart[priceCount] = 0;
 
         priceCount++;
-    }
+    }       // This loop runs through the file and splits each line into the name of the item and the price, then stores those within the corresponding variables.
 
     while (!isDone)
     {
@@ -83,7 +83,7 @@ int main()
             isEmpty = false;
             itemCart[itemChoice - 1]++;
         }
-    }
+    }       // This loop gets the users input for their cart, validates that it's the right input type, and alerts them if their input is outside the bounds of the menu.
 
     if (!isEmpty)
     {
