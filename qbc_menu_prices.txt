@@ -1,0 +1,5 @@
+Coffee 1.85
+Tea 1.05
+Milk 1.25
+Donut 2.25
+Bagel 2.75
